@@ -12,6 +12,12 @@ type KafkaConsumer struct {
 	MsgChan chan *ckafka.Message
 }
 
+func NewKafkaConsumer(msgChan chan *ckafka.Message) *KafkaConsumer {
+	return &KafkaConsumer{
+		MsgChan: msgChan,
+	}
+}
+
 func (k *KafkaConsumer) Consume() {
 	configMap := &ckafka.ConfigMap{
 		"bootstrap.servers": os.Getenv("KafkaBootstrapServers"),
